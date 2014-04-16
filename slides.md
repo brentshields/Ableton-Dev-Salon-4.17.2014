@@ -24,6 +24,15 @@ An Introduction to ClojureScript
 - Dynamic host language enables additional features
 
 ---
+
+# ClojureScript Toolchain
+
+- cljs cannot compile itself, the Clojure compiler consumes cljs and emits JavaScript.
+- Leiningen is your friend.  Use the lein-cljsbuild plugin.
+- The emitted js is either used directly or fed to Closure, Google's optimizing js compiler, depending on the optimization settings.
+- Closure's advanced optimization mode can yield dramatic improvements.
+
+---
 #Who
 ##Rich Hickey
 ![right 150%](hickey.jpeg)
@@ -41,7 +50,10 @@ An Introduction to ClojureScript
 ## David Nolen
 ![right 800%](nolen.jpeg)
 
-- TODO: Pic, links to talks
+- Developer at the New York Times
+- Primary maintainer of ClojureScript
+- Primary author of core.logic and core.match
+- Recent talk of note: The Functional Final Frontier
 
 ---
 
@@ -140,7 +152,7 @@ Enables 'language features' as libraries
 - Reactive programming with an epochal time model
 - signals update over time, but only observed in discrete steps
 - progression of time is explicit
-- signals notify only when value actually changes
+- observers only notified when signal value actually changes
 
 ---
 
