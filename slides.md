@@ -53,6 +53,7 @@ An Introduction to ClojureScript
 - Developer at the New York Times
 - Primary maintainer of ClojureScript
 - Primary author of core.logic and core.match
+- Om web framework
 - Recent talk of note: The Functional Final Frontier
 
 ---
@@ -93,6 +94,18 @@ Enables 'language features' as libraries
 - _Pattern matching_: `core.match`
 
 - _CSP_: `core.async`
+
+---
+#Runtime Polymorphism
+##Protocols
+
+![inline 80%](conj.png)
+
+---
+#Runtime Polymorphism
+##Multimethods
+
+![inline 80%](multi.png)
 
 ---
 
