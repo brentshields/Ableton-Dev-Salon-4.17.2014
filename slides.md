@@ -18,8 +18,8 @@ An Introduction to ClojureScript
 
 # ClojureScript
 ### Clojure compiled to JavaScript
-- Run on JS clients / Browser Desktop Mobile Server
-- Interop with JS libraries
+- Run on js clients / Browser Desktop Mobile Server
+- Interop with js libraries
 - Leverage the Googleplex via Closure compiler
 - Dynamic host language enables additional features
 
@@ -27,7 +27,8 @@ An Introduction to ClojureScript
 
 # ClojureScript Toolchain
 
-- cljs cannot compile itself, the Clojure compiler consumes cljs and emits JavaScript.
+- cljs cannot compile itself
+- Clojure compiler consumes cljs and emits js
 - Leiningen is your friend.  Use the lein-cljsbuild plugin.
 - The emitted js is either used directly or fed to Closure, Google's optimizing js compiler, depending on the optimization settings.
 - Closure's advanced optimization mode can yield dramatic improvements.
@@ -122,32 +123,66 @@ Enables 'language features' as libraries
 
 ---
 
-#Why?
-###Epochal Model of Time
-
-- Time is discrete
-- Clients observe snapshots of state over time
-- Snapshots of state are values. Values are immutable.
-- The next time quantum is calculated as a function of the previous.
-- procedural / OO time is implicit
-
----
-
 #Isn't that inefficient?
 
 - Naive implementation would just copy
 - __Immutability enables structural sharing__
 - Sophisticated data structure implementatation necessary for practical usage.
 - Not sufficient to just avoid mutation in a procedural / OO language.
+- More on this later...
+
+---
+#How do we remember things?
+
+- Pure functional approach very good for modeling computations
+- Doesn't fit as well for stateful user interaction
+- We want Clojure on the __client__
+- How to maintain state between user events?
+
+---
+
+#The missing piece
+## Atom
+
+- The __only__ mutable data type in cljs (outside of js interop)
+- A box that stores a value
+- The value that is stored can be exchanged for a different value
+
+---
+
+#Atom
+
+![inline 95%](atom.png)
+
+---
+
+#Epochal Time Model
+
+- Time is discrete
+- Clients observe snapshots of state over time
+- Snapshots are values. Values are immutable.
+- The next time quantum is calculated as a function of the previous.
+- Every observable mutation of state represents an increment in time
+
+---
+
+#Epochal Time Model
+- I want my programs to be like this!
+- Put all application state in a single atom.  Done!
+- Great, but...
+  - Usually more than one atom is desirable.
+  - If more than one, time increments are the union of all atom mutations
+  - Time advances when any event handler or state observer mutates an atom
 
 ---
 
 #funken
 
 - Reactive programming with an epochal time model
-- signals update over time, but only observed in discrete steps
-- progression of time is explicit
-- observers only notified when signal value actually changes
+- signals update over time, but only observed in discrete frames
+- progression of time is __explicit__
+- within a given time frame, the observed value of a signal does not change
+- signals can be mutable, but modifications are not observed until the next frame
 
 ---
 
