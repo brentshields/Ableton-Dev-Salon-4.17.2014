@@ -172,7 +172,7 @@ Enables 'language features' as libraries
 - Great, but...
   - Usually more than one atom is desirable.
   - If more than one, time increments are the union of all atom mutations
-  - Time advances when any event handler or state observer mutates an atom
+  - Time advances when any event handler or state observer mutates an atom, not necessarily when you want
 
 ---
 
@@ -180,8 +180,7 @@ Enables 'language features' as libraries
 
 - Reactive programming with an epochal time model
 - signals update over time, but only observed in discrete frames
-- progression of time is __explicit__
-- within a given time frame, the observed value of a signal does not change
+- progression of time is __explicit__.  No changes can be observed without `commit!` being called.
 - signals can be mutable, but modifications are not observed until the next frame
 
 ---
@@ -190,6 +189,31 @@ Enables 'language features' as libraries
 
 - Observers can subscribe to notifications when signals change
 - Only notified when a new frame is committed __and__ the signal value has changed since the last frame
+- Multiple atoms can be committed together in a single transaction
+
+---
+
+#funken basic api
+
+- state
+  - Creates an atom-like signal
+  - The root of a composition tree of derived signals
+  - Update via reset! and swap!
+
+- commit!
+  - Called with one or more states to increment time
+  - Results of state updates become observable
+
+---
+
+#funken basic api
+
+- view
+  - The functor operation for signals
+  - Creates a signal from existing signal(s) and a function of matching arity
+- lens
+  - Creates a mutable signal from a getter/setter function pair and a signal
+  - Update via reset! and swap! which propogate to the root state
 
 ---
 
