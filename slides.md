@@ -110,33 +110,15 @@ Enables 'language features' as libraries
 ---
 
 #Data Structures
-##Immutable and Persistent - Vectors
+##Immutable and Persistent
 
-```clojure
-> (def foo [1 2 3])
-=> [1 2 3]
-
-> (conj foo 4)
-=> [1 2 3 4]
-
-> foo
-=> [1 2 3]
-```
+![inline](persistent-vector.png)
 
 ---
 #Data Structures
-##Immutable and Persistent - Maps
+##Immutable and Persistent
 
-```clojure
-> (def person {:first "Jack" :last "Schaedler"})
-=> {:first "Jack" :last "Schaedler"}
-
-> (conj person {:last "Jones" :age 19})
-=> {:first "Jack" :last "Jones" :age 19}
-
-> person
-=> {:first "Jack" :last "Schaedler"}
-```
+![inline 85%](persistent-map.png)
 
 ---
 
