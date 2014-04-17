@@ -186,6 +186,23 @@ Enables 'language features' as libraries
 
 ---
 
-#funken example
+#funken
 
-analog of persistent data structure example
+- Observers can subscribe to notifications when signals change
+- Only notified when a new frame is committed __and__ the signal value has changed since the last frame
+
+---
+
+#Demo
+##Conway's Game Of Life
+
+---
+
+#Persistent Data Structures Redux
+##Memory Footprint
+##5000 cells over 5000 generations
+
+- Simulation
+![inline 130%](memory-footprint-simulation.png)
+- Randomized
+![inline 130%](memory-footprint-randomized.png)
